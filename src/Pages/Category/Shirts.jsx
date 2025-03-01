@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Shoe() {
+function Shirts() {
   return (
     <div className='bg-red-500'>
-    <h1>shoes</h1>
-  </div>
+      <h1>shirts</h1>
+    </div>
   )
 }
 
-export default Shoe
+export default Shirts

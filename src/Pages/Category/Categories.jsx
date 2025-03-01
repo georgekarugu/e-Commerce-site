@@ -3,12 +3,8 @@ import { Link, Outlet } from 'react-router-dom'
 
 function Categories() {
   return (
-    <div>
+    <div className="p-6">
       <h1>hallo</h1>
-      <nav>
-        <Link to="shoes">Shoe</Link>
-        <Link to="clothes">Clothes</Link>
-      </nav>
       <Outlet />
     </div>
   )
