@@ -5,6 +5,7 @@ import Shirts from "./Pages/Category/Shirts";
 import Shorts from "./Pages/Category/Shorts";
 import Trousers from "./Pages/Category/Trousers";
 import Latest from "./Pages/Latest";
+import Deals from "./Pages/Deals";
 import Navbar from "./Components/NavBar";
 import Account from "./Pages/Account";
 
@@ -25,6 +26,7 @@ function App() {
         </Route>
         <Route path="/latest" element={<Latest />}/>
         <Route path="/account"element={<Account/>}/>
+        <Route path="/deals" element={<Deals />} />
       </Routes>
    
     </>
