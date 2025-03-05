@@ -8,6 +8,7 @@ import Latest from "./Pages/Latest";
 import Deals from "./Pages/Deals";
 import Navbar from "./Components/NavBar";
 import Account from "./Pages/Account";
+import Cart from "./Pages/Cart";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/latest" element={<Latest />}/>
         <Route path="/account"element={<Account/>}/>
         <Route path="/deals" element={<Deals />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
    
     </>
