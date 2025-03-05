@@ -6,8 +6,8 @@ function Account() {
   const [isRegistering, setIsRegistering] = useState(false);
 
   return (
-    <div className="flex items-center justify-center min-h-screen max-md: bg-gray-100 p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-lg">
         {/* Conditionally Render Sign In or Register */}
         {isRegistering ? (
           <Register onSwitch={() => setIsRegistering(false)} />
