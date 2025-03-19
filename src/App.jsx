@@ -9,13 +9,13 @@ import Deals from "./Pages/Deals";
 import Navbar from "./Components/NavBar";
 import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
+import AppProvider from "./AppProvider";
 
 
 function App() {
   return (
-    <>
-   
-    
+    <AppProvider>
+        <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />  
@@ -31,7 +31,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
       </Routes>
    
-    </>
+    </> 
+    </AppProvider>
+  
     
   );
 }

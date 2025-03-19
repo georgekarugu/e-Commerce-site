@@ -1,16 +1,49 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
+import UserContext from "../Contexts/Auth/useContext";
+import { useNavigate } from "react-router-dom";
 
 function Register({onSwitch}) {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const { setUser } = useContext(UserContext);
+
+  const registerUser = async (firstName,lastName, email, password) => {
+    try {
+        const response = await fetch("http://localhost:5000/api/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ firstName,lastName, email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Store token in localStorage
+            localStorage.setItem("token", data.token);
+            console.log("Registration successful!");
+            navigate("/dashboard");
+        } else {
+            console.error("Registration failed:", data.message);
+        }
+    } catch (error) {
+        console.error("Error registering:", error);
+    }
+};
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    setUser({username, password});
+
     let newErrors = {};
 
     if (!firstName) newErrors.firstName = "First Name is required.";
@@ -19,15 +52,11 @@ function Register({onSwitch}) {
     if (!password) newErrors.password = "Password is required.";
   
     setErrors(newErrors);
-     // Create user object
-  const userData = {
-    firstName,
-    lastName,
-    email,
-    password,
-  };
-  // Send the user object to the server
-  console.log(userData);
+
+    const user = { firstName, lastName, email, password };
+    registerUser(user.firstName, user.lastName, user.email, user.password);
+
+
   };
 
   return (

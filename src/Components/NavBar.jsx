@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp, Search, User, ShoppingCart } from "lucide-react
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(3);
+  const [cartCount, setCartCount] = useState(1);
   const dropdownRef = useRef(null);
 
     // Function to close dropdown when clicking outside
@@ -29,7 +29,7 @@ function Navbar() {
        <nav className="bg-blue-700 h-20 shadow-md p-7 flex items-center justify-between gap-12 md:gap-3 lg:gap-3">
      
       <div >
-      <Link to="/" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">Luku Store</Link>
@@ -43,7 +43,7 @@ function Navbar() {
       <div className="relative" ref={dropdownRef}>
       <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+          className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full"
@@ -115,7 +115,7 @@ function Navbar() {
       <div className="relative" ref={dropdownRef}>
       <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+          className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full"
@@ -156,17 +156,17 @@ function Navbar() {
       </div>
  
   
-      <Link to="/latest" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/latest" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">latest</Link>
 
-      <Link to="/deals" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/deals" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">Deals</Link>
 
-<Link to="/account" className="text-2xl font-bold items-center gap-2 relative text-white transition duration-300 
+<Link to="/account" className="text-xl font-bold items-center gap-2 relative text-white transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full md:flex">
@@ -179,7 +179,7 @@ function Navbar() {
    
 
 
-        <Link to="/cart" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+        <Link to="/cart" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                         before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                         before:transition-all before:duration-300 hover:text-gray-300 
                         hover:before:w-full">
