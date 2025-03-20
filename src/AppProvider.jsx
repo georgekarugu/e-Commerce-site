@@ -1,10 +1,16 @@
 import React from 'react'
-import authProvider from './Contexts/Auth/authProvider'
+import AuthProvider from './Contexts/Auth/authProvider'
+import CartProvider from './Contexts/Cart/cartProvider'
 function AppProvider({children}) {
   return (
-    <authProvider>
-      {children}
-    </authProvider>
+    
+    <AuthProvider>
+      <CartProvider>
+       
+          {children}
+        
+      </CartProvider>
+    </AuthProvider>
   )
 }
 

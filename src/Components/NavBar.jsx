@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp, Search, User, ShoppingCart } from "lucide-react"
+import { useContext } from "react";
+import { CartContext } from "../Contexts/Cart/cartProvider";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(1);
   const dropdownRef = useRef(null);
+
+  const {count, setCartCount}= useContext(CartContext)
 
     // Function to close dropdown when clicking outside
     useEffect(() => {
@@ -187,9 +190,9 @@ function Navbar() {
                           <ShoppingCart size={28} strokeWidth={1.5} />
                           
                           {/* Cart Quantity Badge */}
-                          {cartCount > 0 && (
+                          {count > 0 && (
                             <span className="absolute -top-4 -right-1 bg-red-700 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full p-0">
-                              {cartCount}
+                              {count}
                             </span>
                           )}
               </div>

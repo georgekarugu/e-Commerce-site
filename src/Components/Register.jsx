@@ -1,7 +1,6 @@
 import { useState,useContext } from "react";
-import UserContext from "../Contexts/Auth/useContext";
 import { useNavigate } from "react-router-dom";
-
+import { UserContext } from "../Contexts/Auth/authProvider";
 function Register({onSwitch}) {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
