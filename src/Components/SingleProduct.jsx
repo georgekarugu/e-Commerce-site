@@ -7,11 +7,12 @@ import { Button } from "../Components/button";
 const SingleProduct = ({product}) => {
 
   const {cart, setCart, count, setCartCount  } = useContext(CartContext);
+  const [inCart, setInCart] = useState(false); 
 
   const addToCart = () => {
     setCart([...cart, product]);
     setCartCount(count + 1);
-    console.log("Product added to cart: ", product);
+    setInCart(true); 
   }
   return (
     <Card key={product.id} className="p-4 rounded-2xl shadow-md relative">
@@ -32,12 +33,23 @@ const SingleProduct = ({product}) => {
     </div>
     <div className="flex justify-between items-center mt-4">
       <span className="text-xl font-bold">${product.price}</span>
-      <Button
-        onClick={addToCart}
-        className="bg-blue-700 text-white px-4 py-2 rounded-lg"
+
+      {!inCart ? (
+          <Button
+          onClick={addToCart}
+          className="bg-blue-700 text-white px-4 py-2 rounded-lg"
+        >
+          Add to Cart
+        </Button>
+      ) : (
+        <Button
+        className="bg-green-700 text-white px-4 py-2 rounded-lg"
       >
-        Add to Cart
+        Added
       </Button>
+      )}
+
+    
     </div>
   </CardContent>
 </Card>

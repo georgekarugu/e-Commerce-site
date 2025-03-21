@@ -36,7 +36,7 @@ const Cart = () => {
   
 
   return (
-    <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-100 min-h-screen">
+    <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-100 min-h-screen pt-24">
       <div className="md:col-span-2">
         <h2 className="text-3xl font-bold mb-6 text-gray-800">Shopping Cart</h2>
         {cart.length > 0 ? (
@@ -75,6 +75,9 @@ const Cart = () => {
                       <Trash size={18} /> Remove
                     </Button>
                   </div>
+                  <p
+                  className="text-gray-700 text-sm truncate"
+                  >Seller: {item.seller}</p>
                 </CardContent>
               </Card>
             ))}

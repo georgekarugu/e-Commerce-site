@@ -9,6 +9,7 @@ const products = [
     description: "Table with air purifier, stained veneer/black",
     rating: 4.5,
     quantity: 1,
+    seller:"Luku store",
     reviews: 121,
     image: "/image.jpg", // Replace with actual image URL
   },
@@ -52,7 +53,7 @@ function Home() {
         style={{  backgroundImage: "url('/ss.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "700px",
+          height: "600px",
           width: "100%", }}
       >
         {/* Dark Overlay for Readability */}
@@ -78,7 +79,7 @@ function Home() {
       {/* Categories Section */}
       <div className="p-4">
       <h2 className="text-4xl font-bold mb-4 mt-4">
-      Todays Best Deals for you!
+      Whats New!
           </h2>
       </div>
       

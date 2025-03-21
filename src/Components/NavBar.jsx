@@ -36,7 +36,7 @@ function Navbar() {
   return (
 
     
-       <nav className="bg-blue-700 h-20 shadow-md p-7 flex items-center justify-between gap-12 md:gap-3 lg:gap-3">
+       <nav className="bg-blue-700 h-20 shadow-md p-7 flex items-center justify-between gap-12 md:gap-3 lg:gap-3 fixed top-0 left-0 z-50 w-full">
      
       <div >
       <Link to="/" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 

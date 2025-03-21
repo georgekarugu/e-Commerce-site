@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Shirts() {
+const Shirts = () => {
   return (
-    <div className='bg-red-500'>
-      <h1>shirts</h1>
+    <div>
+      
     </div>
   )
 }
