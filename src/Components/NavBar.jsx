@@ -8,8 +8,15 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const {count, setCartCount}= useContext(CartContext)
+
+  //fundtion to handle search query
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("searching for:", searchQuery)   
+  }
 
     // Function to close dropdown when clicking outside
     useEffect(() => {
@@ -97,20 +104,26 @@ function Navbar() {
     </div>
 )}
 
+{/* input form */}
 <div className="relative w-72">
+  <form onSubmit={handleSearch}>
   <input
     type="text"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
     placeholder="Search Product"
     className="w-full p-3 pl-5 pr-12 rounded-full border border-gray-300 
                focus:outline-none focus:ring-2 focus:ring-gray-400 
                text-gray-600 placeholder-gray-400"
   />
   <button 
-    onClick={() => console.log("Searching...")}
+  type="submit"
     className="absolute p-5 right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black"
   >
     <Search size={28} />
   </button>
+  </form>
+ 
 </div>
 
 

@@ -46,7 +46,7 @@ const Cart = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-24 h-24 object-cover rounded-lg border border-gray-300"
+                  className="w-24 h-27 object-cover rounded-lg border border-gray-300"
                 />
                 <CardContent className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
