@@ -1,5 +1,5 @@
 import { Filter, Edit, Trash2 } from "lucide-react";
-import { Button } from "../Components/button";
+import { Button } from "../../Components/button";
 
 const products = [
   { id: 1, image: "/macbook.png", name: "Macbook Pro 13\"", category: "Laptop", price: "$2399.00", stock: 12, status: "In Stock", statusColor: "bg-green-500" },
@@ -15,13 +15,14 @@ export default function Products() {
       <header className="flex justify-between items-center mb-5 border-b border-gray-700 pb-3">
         <h1 className="text-2xl font-bold capitalize text-white">Product Inventory</h1>
         <div className="flex gap-3">
+        <Button className="border border-gray-400 hover:bg-gray-700 text-white px-4 py-2 rounded-md">Add Product</Button>
           <Button className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md">
             <Filter className="w-4 h-4" /> Filter
           </Button>
           <Button className="border border-gray-400 hover:bg-gray-700 text-white px-4 py-2 rounded-md">See all</Button>
         </div>
       </header>
-      
+
       <div className="bg-gray-800 p-4 rounded-lg shadow-md">
         <table className="w-full text-left text-gray-300">
           <thead>

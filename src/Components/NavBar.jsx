@@ -189,6 +189,11 @@ function Navbar() {
   <User size={30}/>Account
 </Link>
 
+<Link to="/admin" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
+                       before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
+                       before:transition-all before:duration-300 hover:text-gray-300 
+                       hover:before:w-full">Admin</Link>
+
         
         </div>
 

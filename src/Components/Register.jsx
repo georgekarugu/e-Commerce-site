@@ -2,7 +2,7 @@ import { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Contexts/Auth/authProvider";
 function Register({onSwitch}) {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ function Register({onSwitch}) {
 
   const registerUser = async (firstName,lastName, email, password) => {
     try {
-        const response = await fetch("http://localhost:5000/api/users", {
+        const response = await fetch("http://localhost:8080/auth/create-account", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,11 +23,15 @@ function Register({onSwitch}) {
 
         const data = await response.json();
 
-        if (response.ok) {
+        if (!data.ok) {
+          throw new Error(data.error);
+        }
+
+        if (data.ok) {
             // Store token in localStorage
-            localStorage.setItem("token", data.token);
-            console.log("Registration successful!");
-            navigate("/dashboard");
+            //localStorage.setItem("token", data.token);
+            console.log(data._id);
+           // navigate("/home");
         } else {
             console.error("Registration failed:", data.message);
         }
@@ -41,7 +45,7 @@ function Register({onSwitch}) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUser({username, password});
+    //setUser({username, password});
 
     let newErrors = {};
 
@@ -59,7 +63,7 @@ function Register({onSwitch}) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen  bg-gray-100 p-4">
+    <div className="flex items-center justify-center min-h-screen  bg-gray-100 p-4 pt-20">
       <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
         <form onSubmit={handleSubmit} className="space-y-4 ">

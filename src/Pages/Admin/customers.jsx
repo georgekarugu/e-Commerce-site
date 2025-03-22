@@ -1,5 +1,5 @@
 import { Filter, Eye, Edit, XCircle } from "lucide-react";
-import { Button } from "../Components/button";
+import { Button } from "../../Components/button";
 
 const customers = [
   { id: 1, avatar: "/user1.png", name: "John Doe", email: "johndoe@example.com", registered: "2024-01-15", orders: 5, status: "Active", statusColor: "bg-green-500" },
@@ -20,7 +20,7 @@ export default function Customers() {
           <Button className="border border-gray-400 hover:bg-gray-700 text-white px-4 py-2 rounded-md">See all</Button>
         </div>
       </header>
-      
+
       <div className="bg-gray-800 p-4 rounded-lg shadow-md">
         <table className="w-full text-left text-gray-300">
           <thead>

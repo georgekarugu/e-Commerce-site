@@ -1,5 +1,5 @@
 import { Filter } from "lucide-react";
-import { Button } from "../Components/button";
+import { Button } from "../../Components/button";
 
 const orders = [
   { id: 1, image: "/macbook.png", name: "Macbook pro 13\"", category: "Laptop", price: "$2399.00", status: "Delivered", statusColor: "bg-green-500" },
