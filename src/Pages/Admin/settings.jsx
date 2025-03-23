@@ -49,7 +49,7 @@ const Add = () => {
             
             const data = await response.json();
             console.log("Product saved: ", data);
-            alert("Product added successfully!");
+            //alert("Product added successfully!");
             setProduct({
                 name: "",
                 category: "",

@@ -9,6 +9,18 @@ const orders = [
   { id: 5, image: "/airpods.png", name: "Airpods Pro 2nd Gen", category: "Accessories", price: "$240.00", status: "Delivered", statusColor: "bg-green-500" },
 ];
 
+// const [orders, setOrders] = useState([]);
+
+// useEffect(() => {
+//   axios.get("http://localhost:8080/products")
+//     .then(response => {
+//       setOrders(response.data); // Store the response in state
+//     })
+//     .catch(error => {
+//       console.error("Error fetching products:", error);
+//     });
+// }, []);
+
 export default function Orders() {
   return (
     <div className="p-5 bg-gray-900 text-gray-200">

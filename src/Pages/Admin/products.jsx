@@ -1,5 +1,6 @@
 import { Filter, Edit, Trash2 } from "lucide-react";
 import { Button } from "../../Components/button";
+import { useState } from "react";
 
 const products = [
   { id: 1, image: "/macbook.png", name: "Macbook Pro 13\"", category: "Laptop", price: "$2399.00", stock: 12, status: "In Stock", statusColor: "bg-green-500" },
@@ -8,6 +9,18 @@ const products = [
   { id: 4, image: "/ipad.png", name: "iPad Pro 3rd Gen", category: "Electronics", price: "$1699.00", stock: 7, status: "In Stock", statusColor: "bg-green-500" },
   { id: 5, image: "/airpods.png", name: "AirPods Pro 2nd Gen", category: "Accessories", price: "$240.00", stock: 2, status: "In Stock", statusColor: "bg-green-500" },
 ];
+
+// const [products, setProducts] = useState([]);
+
+// useEffect(() => {
+//   axios.get("http://localhost:8080/products")
+//     .then(response => {
+//       setProducts(response.data); // Store the response in state
+//     })
+//     .catch(error => {
+//       console.error("Error fetching products:", error);
+//     });
+// }, []);
 
 export default function Products() {
   return (

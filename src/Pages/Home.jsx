@@ -1,4 +1,5 @@
 import SingleProduct from "../Components/SingleProduct";
+import axios from "axios";
 
 const products = [
   {
@@ -44,6 +45,18 @@ const products = [
     image: "/ss.jpg", // Replace with actual image URL
   },
 ];
+
+// const [products, setProducts] = useState([]);
+
+// useEffect(() => {
+//   axios.get("http://localhost:8080/products")
+//     .then(response => {
+//       setProducts(response.data); // Store the response in state
+//     })
+//     .catch(error => {
+//       console.error("Error fetching products:", error);
+//     });
+// }, []);
 
 function Home() {
   return (

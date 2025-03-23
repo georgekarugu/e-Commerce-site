@@ -1,6 +1,6 @@
 
 
-
+import PlaceOrder from "../Components/placeOrder";
 import { Card, CardContent } from "../Components/card";
 import { Button } from "../Components/button";
 import { Trash } from "lucide-react";
@@ -110,9 +110,7 @@ const Cart = () => {
               <span>${subtotal.toFixed(2)}</span>
             </div>
           </div>
-          <button className="w-full bg-blue-700 text-white py-3 rounded-lg mt-6 hover:bg-blue-600 transition duration-300 text-lg font-semibold">
-            Checkout 
-          </button>
+          <PlaceOrder cartItems={cart} total={subtotal.toFixed(2)}/>
         </div>
       )}
     </div>
