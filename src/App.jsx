@@ -9,13 +9,14 @@ import Deals from "./Pages/Deals";
 import Navbar from "./Components/NavBar";
 import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
+import AppProvider from "./AppProvider";
+import AdminPanel from "./Pages/Admin/admin";
 
 
 function App() {
   return (
-    <>
-   
-    
+    <AppProvider>
+        <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />  
@@ -29,9 +30,12 @@ function App() {
         <Route path="/account"element={<Account/>}/>
         <Route path="/deals" element={<Deals />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
    
-    </>
+    </> 
+    </AppProvider>
+  
     
   );
 }

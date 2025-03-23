@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp, Search, User, ShoppingCart } from "lucide-react"
+import { useContext } from "react";
+import { CartContext } from "../Contexts/Cart/cartProvider";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(3);
   const dropdownRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const {count, setCartCount}= useContext(CartContext)
+
+  //fundtion to handle search query
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log("searching for:", searchQuery)   
+  }
 
     // Function to close dropdown when clicking outside
     useEffect(() => {
@@ -26,10 +36,10 @@ function Navbar() {
   return (
 
     
-       <nav className="bg-blue-700 h-20 shadow-md p-7 flex items-center justify-between gap-12 md:gap-3 lg:gap-3">
+       <nav className="bg-blue-700 h-20 shadow-md p-7 flex items-center justify-between gap-12 md:gap-3 lg:gap-3 fixed top-0 left-0 z-50 w-full">
      
       <div >
-      <Link to="/" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">Luku Store</Link>
@@ -43,7 +53,7 @@ function Navbar() {
       <div className="relative" ref={dropdownRef}>
       <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+          className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full"
@@ -94,20 +104,26 @@ function Navbar() {
     </div>
 )}
 
+{/* input form */}
 <div className="relative w-72">
+  <form onSubmit={handleSearch}>
   <input
     type="text"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
     placeholder="Search Product"
     className="w-full p-3 pl-5 pr-12 rounded-full border border-gray-300 
                focus:outline-none focus:ring-2 focus:ring-gray-400 
                text-gray-600 placeholder-gray-400"
   />
   <button 
-    onClick={() => console.log("Searching...")}
+  type="submit"
     className="absolute p-5 right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black"
   >
     <Search size={28} />
   </button>
+  </form>
+ 
 </div>
 
 
@@ -115,7 +131,7 @@ function Navbar() {
       <div className="relative" ref={dropdownRef}>
       <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+          className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full"
@@ -156,22 +172,27 @@ function Navbar() {
       </div>
  
   
-      <Link to="/latest" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/latest" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">latest</Link>
 
-      <Link to="/deals" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+      <Link to="/deals" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full">Deals</Link>
 
-<Link to="/account" className="text-2xl font-bold items-center gap-2 relative text-white transition duration-300 
+<Link to="/account" className="text-xl font-bold items-center gap-2 relative text-white transition duration-300 
                        before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                        before:transition-all before:duration-300 hover:text-gray-300 
                        hover:before:w-full md:flex">
   <User size={30}/>Account
 </Link>
+
+<Link to="/admin" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
+                       before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
+                       before:transition-all before:duration-300 hover:text-gray-300 
+                       hover:before:w-full">Admin</Link>
 
         
         </div>
@@ -179,7 +200,7 @@ function Navbar() {
    
 
 
-        <Link to="/cart" className="flex text-2xl font-bold items-center gap-2   relative text-white  transition duration-300 
+        <Link to="/cart" className="flex text-xl font-bold items-center gap-2   relative text-white  transition duration-300 
                         before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-0.5 before:bg-white 
                         before:transition-all before:duration-300 hover:text-gray-300 
                         hover:before:w-full">
@@ -187,9 +208,9 @@ function Navbar() {
                           <ShoppingCart size={28} strokeWidth={1.5} />
                           
                           {/* Cart Quantity Badge */}
-                          {cartCount > 0 && (
+                          {count > 0 && (
                             <span className="absolute -top-4 -right-1 bg-red-700 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full p-0">
-                              {cartCount}
+                              {count}
                             </span>
                           )}
               </div>

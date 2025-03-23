@@ -61,10 +61,15 @@ function SignIn({ onSwitch }) {
 
         
 
-        <p className="text-center text-sm text-gray-600">New to Luku Store?</p><br></br>
-        <button onClick={onSwitch} className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-          Create your Luku Store account
+        <p className="text-center text-sm text-gray-600 mt-4">
+        New to luku store?{" "}
+        <button
+          onClick={onSwitch}
+          className="text-blue-600 hover:underline"
+        >
+          Register
         </button>
+      </p>
       </div>
     </div>
   );

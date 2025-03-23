@@ -1,16 +1,52 @@
-import { useState } from "react";
-
+import { useState,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Contexts/Auth/authProvider";
 function Register({onSwitch}) {
+  //const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const { setUser } = useContext(UserContext);
+
+  const registerUser = async (firstName,lastName, email, password) => {
+    try {
+        const response = await fetch("http://localhost:8080/auth/create-account", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ firstName,lastName, email, password })
+        });
+
+        const data = await response.json();
+
+        if (!data.ok) {
+          throw new Error(data.error);
+        }
+
+        if (data.ok) {
+            // Store token in localStorage
+            //localStorage.setItem("token", data.token);
+            console.log(data._id);
+           // navigate("/home");
+        } else {
+            console.error("Registration failed:", data.message);
+        }
+    } catch (error) {
+        console.error("Error registering:", error);
+    }
+};
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    //setUser({username, password});
+
     let newErrors = {};
 
     if (!firstName) newErrors.firstName = "First Name is required.";
@@ -19,19 +55,15 @@ function Register({onSwitch}) {
     if (!password) newErrors.password = "Password is required.";
   
     setErrors(newErrors);
-     // Create user object
-  const userData = {
-    firstName,
-    lastName,
-    email,
-    password,
-  };
-  // Send the user object to the server
-  console.log(userData);
+
+    const user = { firstName, lastName, email, password };
+    registerUser(user.firstName, user.lastName, user.email, user.password);
+
+
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen  bg-gray-100 p-4">
+    <div className="flex items-center justify-center min-h-screen  bg-gray-100 p-4 pt-20">
       <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Account</h2>
         <form onSubmit={handleSubmit} className="space-y-4 ">
