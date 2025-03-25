@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Home, Package, ShoppingCart, Users, Settings } from "lucide-react";
+import { Home, Package, ShoppingCart, Users, Settings, LogOut } from "lucide-react";
 import Orders from "./orders";
 import Customers from "./customers";
   import Dashboard from "./dashboard";
@@ -16,10 +16,11 @@ export default function AdminPanel() {
     { name: "Orders", icon: ShoppingCart, id: "orders" },
     { name: "Customers", icon: Users, id: "customers" },
     { name: "Settings", icon: Settings, id: "settings" },
+    { name: "Logout", icon: LogOut, id: "logout" },
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-gray-200 pt-20 ">
+    <div className="flex min-h-screen  pt-20 ">
       {/* Sidebar */}
       <div className="w-64 h-screen fixed top-0 left-0 bg-gray-800 p-5 shadow-lg pt-24">
         <h2 className="text-xl font-bold mb-5 text-white">Admin Panel</h2>
@@ -42,7 +43,6 @@ export default function AdminPanel() {
       <div className="flex-1 p-5 bg-gray-900 ml-64">
         <header className="flex justify-between items-center mb-5 border-b border-gray-700 pb-3">
           <h1 className="text-2xl font-bold capitalize text-white">{activeTab}</h1>
-          <Button className="bg-red-500 hover:bg-red-600 text-white">Logout</Button>
         </header>
 
         <div>

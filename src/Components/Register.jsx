@@ -100,7 +100,7 @@ function Register({ onSwitch }) {
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="space-y-4 "
+            className="space-y-4"
             name="register-form"
           >
             <input
