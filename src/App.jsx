@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./Pages/Home";
 import Categories from "./Pages/Category/Categories";
 import Shirts from "./Pages/Category/Shirts";
@@ -11,32 +11,33 @@ import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
 import AppProvider from "./AppProvider";
 import AdminPanel from "./Pages/Admin/admin";
-
+import SignIn from "./Pages/auth/SignIn";
+import SignUp from "./Pages/auth/SignUp";
 
 function App() {
+  const { pathname } = useLocation();
+  const regexMatch = new RegExp(`/auth/`, "gi");
   return (
     <AppProvider>
-        <>
-      <Navbar />
+      {!regexMatch.test(pathname) && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />  
-      <Route path="/categories" element={<Categories />}>
-          <Route path="shirts" element={<Shirts />} />
-          <Route path="shorts" element={<Shorts />} />
-          <Route path="trousers" element={<Trousers />} />
+        <Route path="/" element={<Home />} />
 
-        </Route>
-        <Route path="/latest" element={<Latest />}/>
-        <Route path="/account"element={<Account/>}/>
+        <Route path="/auth/sign-in" element={<SignIn />} />
+        <Route path="/auth/sign-up" element={<SignUp />} />
+
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/shirts" element={<Shirts />} />
+        <Route path="/categories/shorts" element={<Shorts />} />
+        <Route path="/categories/trousers" element={<Trousers />} />
+
+        <Route path="/latest" element={<Latest />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/deals" element={<Deals />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPanel />} />
       </Routes>
-   
-    </> 
     </AppProvider>
-  
-    
   );
 }
 

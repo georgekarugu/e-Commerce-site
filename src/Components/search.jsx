@@ -59,24 +59,18 @@ const SearchProducts = () => {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown} // Support Enter key
         placeholder="Search Product"
-        className="w-full p-3 pl-5 pr-12 rounded-full border border-gray-300 
+        className="w-full py-1 pl-5 pr-12 rounded-full border border-gray-300 
                   focus:outline-none focus:ring-2 focus:ring-gray-400 
                   text-gray-600 placeholder-gray-400"
       />
-      
+
       {/* Search Button */}
-      <button 
+      <button
         onClick={handleSearch}
-        className="absolute p-2 right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black"
+        className="absolute p-2 right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black outline-none"
       >
-        <Search size={24} />
+        <Search size={20} />
       </button>
-
-      {/* Loading Indicator */}
-      {loading && <p className="text-gray-400 mt-3">Searching...</p>}
-
-      {/* Error Message */}
-      {error && <p className="text-red-500 mt-3">{error}</p>}
     </div>
   );
 };
