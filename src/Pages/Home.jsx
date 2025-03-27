@@ -49,7 +49,7 @@ function Home() {
       image: "/ss.jpg",
     },
     {
-      id: 4,
+      id: 7,
       name: "Smart Speaker X",
       price: 199.0,
       description: "Wireless speaker with AI assistant, charcoal gray",
@@ -59,7 +59,7 @@ function Home() {
       image: "/ss.jpg",
     },
     {
-      id: 4,
+      id: 8,
       name: "Smart Speaker X",
       price: 199.0,
       description: "Wireless speaker with AI assistant, charcoal gray",
@@ -69,7 +69,7 @@ function Home() {
       image: "/ss.jpg",
     },
     {
-      id: 4,
+      id: 9,
       name: "Smart Speaker X",
       price: 199.0,
       description: "Wireless speaker with AI assistant, charcoal gray",

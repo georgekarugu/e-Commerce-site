@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../Contexts/Auth/authProvider";
-function Register({ onSwitch }) {
+
+function SignUp() {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -9,12 +9,10 @@ function Register({ onSwitch }) {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors]= useState("");
 
   const [otp, setOTP] = useState("");
   const [currentForm, setCurrentForm] = useState("register");
-
-  const { setUser } = useContext(UserContext);
 
   const verifyUserData = async (userObj) => {
     try {
@@ -41,18 +39,18 @@ function Register({ onSwitch }) {
   };
 
   const formatPhoneNumber = (number) => {
-    return `+254${phoneNumber}`;
+    return `+254${number}`;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     //setUser({username, password});
     let newErrors = {};
-    if (!firstName) newErrors.firstName = "First Name is required.";
-    if (!lastName) newErrors.lastName = "Last Name is required.";
-    if (!email) newErrors.email = "Email is required.";
-    if (!password) newErrors.password = "Password is required.";
+    // if (!firstName) newErrors.firstName = "First Name is required.";
+    // if (!lastName) newErrors.lastName = "Last Name is required.";
+    // if (!email) newErrors.email = "Email is required.";
+    // if (!password) newErrors.password = "Password is required.";
 
-    setErrors(newErrors);
+     setErrors(newErrors);
     verifyUserData({
       firstName,
       lastName,
@@ -80,7 +78,7 @@ function Register({ onSwitch }) {
         }),
       });
       const { error, _id } = await request.json();
-      if (error) alert(error);
+      if (error) return alert(error);
       if (_id) {
         localStorage.setItem("userID", _id);
         navigate("/");
@@ -100,7 +98,7 @@ function Register({ onSwitch }) {
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-4 "
             name="register-form"
           >
             <input
@@ -109,15 +107,9 @@ function Register({ onSwitch }) {
               placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.firstName
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
-              }`}
+              className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+              }
             />
-            {errors.firstName && (
-              <p className="text-red-500 text-sm">{errors.firstName}</p>
-            )}
 
             <input
               required
@@ -125,15 +117,11 @@ function Register({ onSwitch }) {
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.lastName
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
-              }`}
+              className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+              }
             />
-            {errors.lastName && (
-              <p className="text-red-500 text-sm">{errors.lastName}</p>
-            )}
+            
+            
             <div className="grid grid-cols-[3rem_auto] items-center gap-0.5">
               <div className="border rounded-lg h-full flex items-center justify-center">
                 <span>+254</span>
@@ -146,31 +134,21 @@ function Register({ onSwitch }) {
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.phoneNumber
-                    ? "border-red-500 focus:ring-red-500"
-                    : "focus:ring-blue-500"
-                }`}
+                className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+                }
               />
             </div>
-            {errors.phoneNumber && (
-              <p className="text-red-500 text-sm">{errors.phoneNumber}</p>
-            )}
+          
             <input
               required
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.email
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
-              }`}
+              className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+              }
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
+        
 
             <input
               required
@@ -178,15 +156,9 @@ function Register({ onSwitch }) {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.password
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
-              }`}
+              className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+              }
             />
-            {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
-            )}
 
             <button
               type="submit"
@@ -198,7 +170,7 @@ function Register({ onSwitch }) {
               Already have an account?{" "}
               <button
                 type="button"
-                onClick={onSwitch}
+                onClick={() => navigate("/auth/sign-in")}
                 className="text-blue-600 hover:underline"
               >
                 Sign in
@@ -217,11 +189,8 @@ function Register({ onSwitch }) {
               placeholder="OTP"
               value={otp}
               onChange={(e) => setOTP(e.target.value)}
-              className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.otp
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
-              }`}
+              className={"w-full p-3 border rounded-lg focus:outline-none focus:ring-2  focus:ring-blue-500"
+              }
             />
             {errors.otp && <p className="text-red-500 text-sm">{errors.otp}</p>}
             <button
@@ -244,4 +213,4 @@ function Register({ onSwitch }) {
   );
 }
 
-export default Register;
+export default SignUp;

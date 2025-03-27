@@ -1,19 +1,37 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignIn({ onSwitch }) {
-  const [email, setEmail] = useState("");
+function SignIn() {
+  const navigate = useNavigate();
+
+  const [identity, setIdentity] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!identity || !password) {
       setError("Enter your email or mobile phone number and password.");
     } else {
       setError("");
-      // Handle authentication logic
+      fetch("http://localhost:8080/auth/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          identity,
+          password,
+        }),
+      })
+        .then((res) => res.json())
+        .then(({ error, userID }) => {
+          if (error) {
+            setError(error);
+            return;
+          }
+          localStorage.setItem("userID", userID);
+        });
     }
   };
 
@@ -31,8 +49,8 @@ function SignIn({ onSwitch }) {
             </label>
             <input
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={identity}
+              onChange={(e) => setIdentity(e.target.value)}
               className="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -57,19 +75,18 @@ function SignIn({ onSwitch }) {
           >
             Continue
           </button>
-        </form><br></br>
-
-        
+        </form>
+        <br></br>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-        New to luku store?{" "}
-        <button
-          onClick={onSwitch}
-          className="text-blue-600 hover:underline"
-        >
-          Register
-        </button>
-      </p>
+          New to luku store?{" "}
+          <button
+            onClick={() => navigate("/auth/sign-up")}
+            className="text-blue-600 hover:underline"
+          >
+            Register
+          </button>
+        </p>
       </div>
     </div>
   );
