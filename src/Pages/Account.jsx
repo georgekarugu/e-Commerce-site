@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Profile from "../Components/profile";
 
 function Account() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Account() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-lg"></div>
+      <Profile />
     </div>
   );
 }

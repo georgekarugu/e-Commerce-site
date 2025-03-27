@@ -11,7 +11,8 @@ import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
 import AppProvider from "./AppProvider";
 import AdminPanel from "./Pages/Admin/admin";
-import Profile from "./Components/profile";
+import SignIn from "./Pages/auth/SignIn";
+import SignUp from "./Pages/auth/SignUp";
 
 function App() {
   const { pathname } = useLocation();
@@ -35,7 +36,6 @@ function App() {
         <Route path="/deals" element={<Deals />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/profile" element={<Profile />} />
       </Routes>
     </AppProvider>
   );
