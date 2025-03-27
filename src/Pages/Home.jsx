@@ -48,6 +48,36 @@ function Home() {
       reviews: 89,
       image: "/ss.jpg",
     },
+    {
+      id: 4,
+      name: "Smart Speaker X",
+      price: 199.0,
+      description: "Wireless speaker with AI assistant, charcoal gray",
+      rating: 4.7,
+      quantity: 1,
+      reviews: 89,
+      image: "/ss.jpg",
+    },
+    {
+      id: 4,
+      name: "Smart Speaker X",
+      price: 199.0,
+      description: "Wireless speaker with AI assistant, charcoal gray",
+      rating: 4.7,
+      quantity: 1,
+      reviews: 89,
+      image: "/ss.jpg",
+    },
+    {
+      id: 4,
+      name: "Smart Speaker X",
+      price: 199.0,
+      description: "Wireless speaker with AI assistant, charcoal gray",
+      rating: 4.7,
+      quantity: 1,
+      reviews: 89,
+      image: "/ss.jpg",
+    },
   ];
 
   // const [products, setProducts] = useState([]);

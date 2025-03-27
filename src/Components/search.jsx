@@ -51,7 +51,8 @@ const SearchProducts = () => {
   }, [query, setSearchResults, setSearching]);
 
   return (
-    <div className="relative w-72">
+    <>
+      <div className="relative w-72">
       {/* Search Input */}
       <input
         type="text"
@@ -71,13 +72,15 @@ const SearchProducts = () => {
       >
         <Search size={24} />
       </button>
-
+    </div>
+    <div>
       {/* Loading Indicator */}
-      {loading && <p className="text-gray-400 mt-3">Searching...</p>}
+      {loading && <p className="text-gray-400 mt-3 pt-20">Searching...</p>}
 
       {/* Error Message */}
-      {error && <p className="text-red-500 mt-3">{error}</p>}
+      {error && <p className="text-red-500 mt-3 pt-20">{error}</p>}
     </div>
+    </>
   );
 };
 
