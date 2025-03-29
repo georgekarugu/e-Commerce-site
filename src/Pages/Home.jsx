@@ -154,6 +154,8 @@ function Home() {
               <SingleProduct key={product.id} product={product} />
             ))}
           </div>
+
+          
         </>
       )}
     </>

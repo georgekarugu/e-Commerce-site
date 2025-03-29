@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom"
+import { UserContext } from "../../Contexts/Auth/authProvider";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors]= useState("");
+  const { user, setUser } = useContext(UserContext);
 
   const [otp, setOTP] = useState("");
   const [currentForm, setCurrentForm] = useState("register");
@@ -43,14 +45,8 @@ function SignUp() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    //setUser({username, password});
-    let newErrors = {};
-    // if (!firstName) newErrors.firstName = "First Name is required.";
-    // if (!lastName) newErrors.lastName = "Last Name is required.";
-    // if (!email) newErrors.email = "Email is required.";
-    // if (!password) newErrors.password = "Password is required.";
+    
 
-     setErrors(newErrors);
     verifyUserData({
       firstName,
       lastName,
@@ -62,6 +58,7 @@ function SignUp() {
 
   const handleSubmitOTP = async (e) => {
     e.preventDefault();
+    setUser({firstName, lastName});
     try {
       const request = await fetch("http://localhost:8080/auth/create-account", {
         method: "POST",

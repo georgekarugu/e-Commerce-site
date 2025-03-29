@@ -22,7 +22,7 @@ function SignIn() {
         body: JSON.stringify({
           identity,
           password,
-        }),
+        })
       })
         .then((res) => res.json())
         .then(({ error, userID }) => {
@@ -54,7 +54,7 @@ function SignIn() {
               className="w-full mt-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
+          
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password
