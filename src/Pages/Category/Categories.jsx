@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
-function Categories() {
+function Category() {
   return (
     <div className="p-6">
       
@@ -10,4 +10,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default Category

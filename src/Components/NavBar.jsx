@@ -82,7 +82,7 @@ function Navbar() {
                 <h3 className="font-semibold mb-2">Popular Categories</h3>
                 <div className="grid grid-cols-2 gap-2">
                   <Link
-                    to="categories/shirts"
+                    to="category/shirts"
                     className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                     onClick={() => setIsOpen(false)}
                   >
@@ -90,7 +90,7 @@ function Navbar() {
                   </Link>
 
                   <Link
-                    to="categories/shorts"
+                    to="category/shorts"
                     className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                     onClick={() => setIsOpen(false)}
                   >
@@ -98,7 +98,7 @@ function Navbar() {
                   </Link>
 
                   <Link
-                    to="categories/trousers"
+                    to="category/trousers"
                     className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                     onClick={() => setIsOpen(false)}
                   >
@@ -106,7 +106,7 @@ function Navbar() {
                   </Link>
 
                   <Link
-                    to="categories/shoes"
+                    to="category/shoes"
                     className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                     onClick={() => {
                       setIsOpen(false);
@@ -172,7 +172,7 @@ function Navbar() {
               <h3 className="font-semibold mb-2">Popular Categories</h3>
               <div className="grid grid-cols-2 gap-2">
                 <Link
-                  to="categories/shirts"
+                  to="category/shirts"
                   className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                 >
@@ -180,7 +180,7 @@ function Navbar() {
                 </Link>
 
                 <Link
-                  to="categories/shorts"
+                  to="category/shorts"
                   className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                 >
@@ -188,7 +188,7 @@ function Navbar() {
                 </Link>
 
                 <Link
-                  to="categories/trousers"
+                  to="category/trousers"
                   className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                 >
@@ -196,7 +196,7 @@ function Navbar() {
                 </Link>
 
                 <Link
-                  to="categories/shoes"
+                  to="category/shoes"
                   className="flex items-center gap-2 p-2 border rounded-lg hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                 >

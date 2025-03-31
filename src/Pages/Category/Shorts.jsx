@@ -1,44 +1,43 @@
-import { useEffect, useState } from "react";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
+import SingleProduct from "../../Components/SingleProduct";
 const Shorts = () => {
+  // const { category } = useParams(); // Get category from URL
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/products");
+        const response = await axios.get(`http://localhost:8080/products?category=shirts`);
         console.log(response)
-        
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        setProducts(data);
+        setProducts(response.data);
       } catch (err) {
-        setError(err.message);
+        setError(err.response?.data?.message || "Error fetching products");
       } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
-
-  if (loading) return <p className="pt-24">Loading products...</p>;
-  if (error) return <p className="pt-28">Error: {error}</p>;
+  }, []); // Re-run when category changes
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 pt-28">
-      {products.map((product) => (
-        <div key={product._id} className="border p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold">{product.name}</h2>
-          <p className="text-gray-700">${product.price}</p>
-        </div>
-      ))}
-    </div>
+    <>
+
+      {loading && <p className="pt-24">Loading products...</p>}
+      {error && <p className="text-red-500 pt-24">{error}</p>}
+    
+          {/* Default Product Listing */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pt-24">
+            {products.map((product) => (
+              <SingleProduct key={product._id} product={product} />
+            ))}
+          </div>
+    </>
   );
 };
 
 export default Shorts;
+

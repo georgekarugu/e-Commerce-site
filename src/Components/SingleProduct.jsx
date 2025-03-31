@@ -15,7 +15,7 @@ const SingleProduct = ({product}) => {
     setInCart(true); 
   }
   return (
-    <Card key={product.id}  
+    <Card key={product._id}  
       className="p-4 rounded-2xl shadow-md relative">
       <div className="relative w-full h-80 overflow-hidden rounded-lg">
         <img

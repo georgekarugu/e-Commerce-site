@@ -23,14 +23,14 @@ const Cart = () => {
   };
 
   const onRemove = (itemId) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
+    const updatedCart = cart.filter((item) => item._id !== itemId);
     setCart(updatedCart);
     updateCartCount(updatedCart); // Update count
   };
 
   const updateQuantity = (itemId, newQuantity) => {
     const updatedCart = cart.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
+      item._id === itemId ? { ...item, quantity: newQuantity } : item
     );
     setCart(updatedCart);
     updateCartCount(updatedCart); // Update count
@@ -45,7 +45,7 @@ const Cart = () => {
         {cart.length > 0 ? (
           <div className="space-y-6">
             {cart.map((item) => (
-              <Card key={item.id} className="p-6 flex items-center gap-6 shadow-lg rounded-2xl bg-white border border-gray-200">
+              <Card key={item._id} className="p-6 flex items-center gap-6 shadow-lg rounded-2xl bg-white border border-gray-200">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -56,14 +56,14 @@ const Cart = () => {
                   <p className="text-gray-600 text-sm">{item.description}</p>
                   <div className="flex items-center mt-2 gap-2">
                     <Button
-                      onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                      onClick={() => updateQuantity(item._id, Math.max(1, item.quantity - 1))}
                       className="bg-gray-300 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-400"
                     >
                       -
                     </Button>
                     <span className="text-lg font-bold text-gray-900">{item.quantity}</span>
                     <Button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(item._id, item.quantity + 1)}
                       className="bg-gray-300 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-400"
                     >
                       +
@@ -72,7 +72,7 @@ const Cart = () => {
                   <div className="flex justify-between items-center mt-4">
                     <span className="text-xl font-bold text-blue-700">${(item.price*item.quantity)}</span>
                     <Button
-                      onClick={() => onRemove(item.id)}
+                      onClick={() => onRemove(item._id)}
                       className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-red-500"
                     >
                       <Trash size={18} /> Remove
