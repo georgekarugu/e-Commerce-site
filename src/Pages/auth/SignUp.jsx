@@ -11,7 +11,7 @@ function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors]= useState("");
-  const { user, setUser } = useContext(UserContext);
+  const {  setUser } = useContext(UserContext);
 
   const [otp, setOTP] = useState("");
   const [currentForm, setCurrentForm] = useState("register");
@@ -76,6 +76,7 @@ function SignUp() {
       });
       const { error, _id } = await request.json();
       if (error) return alert(error);
+      setErrors(error)
       if (_id) {
         localStorage.setItem("userID", _id);
         navigate("/");

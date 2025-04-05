@@ -41,3 +41,8 @@ const ShoePage = () => {
 
 export default ShoePage;
 
+
+
+
+
+

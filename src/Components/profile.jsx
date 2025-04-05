@@ -1,19 +1,42 @@
-import { useState, useContext } from "react";
+import { useState,  useEffect } from "react";
 import { User, Mail, Package, LogOut } from "lucide-react";
-import { UserContext } from "../Contexts/Auth/authProvider";
+//import { UserContext } from "../Contexts/Auth/authProvider";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("account");
-  const { user } = useContext(UserContext) || {};
+  const [userData, setUserData] = useState("");
   const navigate = useNavigate();
 
-  const userID = localStorage.getItem("userID");
+  const fetchUserDetails = async () => {
+    const userID = localStorage.getItem("userID"); // Get ID from localStorage
+    console.log(`'id':${userID}`)
+    if (!userID) return;
+  
+    try {
+      const response = await fetch(`http://localhost:8080/user?id=${userID}`);
+      const user = await response.json();
+      setUserData(user); // Set user's name in state variable
+  
+      console.log(userData.firtstName); // Access user's name
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchUserDetails();
+  });
+  
+
+  //const userID = localStorage.getItem("userID");
 
    // Logout function
   const handleLogout = () => {
-    localStorage.removeItem(userID); // Clear localStorage
-    navigate("/auth/sign-in"); // Redirect to home
+    localStorage.clear();
+   // localStorage.removeItem(userID);
+     // Clear localStorage
+    navigate("/"); // Redirect to home
   };
 
   const menuItems = [
@@ -26,7 +49,7 @@ const Profile = () => {
     <div className="flex min-h-[94vh] w-full pt-20 ">
       {/* Sidebar */}
       <div className="w-64 h-screen fixed top-0 left-0 text-gray-800 p-5 shadow-lg pt-24">
-        <h2 className="text-xl font-bold mb-5 bg-white">Hi {user?.firstName || "Not provided"}</h2>
+        <h2 className="text-xl font-bold mb-5 bg-white">Hi {userData.firtstName}</h2>
         <nav>
           {menuItems.map((item) => (
             <button
@@ -58,7 +81,7 @@ const Profile = () => {
         </header>
 
         <div>
-          {activeTab === "dashboard" && <Dashboard />}
+          
           {activeTab === "orders" && (
             <div className="text-white">see your orders here</div>
           )}

@@ -5,7 +5,7 @@ import Customers from "./customers";
   import Dashboard from "./dashboard";
   import Products from "./products";
   import Add from "./settings";
-import { Button } from "../../Components/button";
+
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState("dashboard");

@@ -20,7 +20,7 @@ function App() {
   const regexMatch = new RegExp(`/auth/`, "gi");
   return (
     <AppProvider>
-      {!regexMatch.test(pathname) && <Navbar />}
+    {!regexMatch.test(pathname) && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
 

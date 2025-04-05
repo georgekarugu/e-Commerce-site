@@ -1,14 +1,31 @@
 import { Filter, Eye, Edit, XCircle } from "lucide-react";
 import { Button } from "../../Components/button";
+import { useState, useEffect } from "react"; 
 
-const customers = [
-  { id: 1, avatar: "/user1.png", name: "John Doe", email: "johndoe@example.com", registered: "2024-01-15", orders: 5, status: "Active", statusColor: "bg-green-500" },
-  { id: 2, avatar: "/user2.png", name: "Jane Smith", email: "janesmith@example.com", registered: "2023-12-10", orders: 2, status: "Suspended", statusColor: "bg-red-500" },
-  { id: 3, avatar: "/user3.png", name: "Alice Brown", email: "alicebrown@example.com", registered: "2024-02-05", orders: 8, status: "Active", statusColor: "bg-green-500" },
-  { id: 4, avatar: "/user4.png", name: "Michael Johnson", email: "michaelj@example.com", registered: "2023-11-20", orders: 3, status: "Active", statusColor: "bg-green-500" },
-];
+import axios from "axios";
+
+// const customers = [
+//   { id: 1, avatar: "/user1.png", name: "John Doe", email: "johndoe@example.com", registered: "2024-01-15", orders: 5, status: "Active", statusColor: "bg-green-500" },
+//   { id: 2, avatar: "/user2.png", name: "Jane Smith", email: "janesmith@example.com", registered: "2023-12-10", orders: 2, status: "Suspended", statusColor: "bg-red-500" },
+//   { id: 3, avatar: "/user3.png", name: "Alice Brown", email: "alicebrown@example.com", registered: "2024-02-05", orders: 8, status: "Active", statusColor: "bg-green-500" },
+//   { id: 4, avatar: "/user4.png", name: "Michael Johnson", email: "michaelj@example.com", registered: "2023-11-20", orders: 3, status: "Active", statusColor: "bg-green-500" },
+// ];
 
 export default function Customers() {
+
+  const [customers, setCustomer] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/users")
+      .then(response => {
+        setCustomer(response.data); // Store the response in state
+         console.log("Fetched customers:", response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching customers:", error);
+      });
+  }, []);
+
   return (
     <div className="p-5 bg-gray-900 text-gray-200">
       <header className="flex justify-between items-center mb-5 border-b border-gray-700 pb-3">
@@ -35,7 +52,7 @@ export default function Customers() {
           </thead>
           <tbody>
             {customers.map((customer) => (
-              <tr key={customer.id} className="border-b border-gray-700 hover:bg-gray-700">
+              <tr key={customer._id} className="border-b border-gray-700 hover:bg-gray-700">
                 <td className="p-3 flex items-center gap-3">
                   <img src={customer.avatar} alt={customer.name} className="w-10 h-10 rounded-full" />
                   <div>
@@ -43,7 +60,7 @@ export default function Customers() {
                   </div>
                 </td>
                 <td className="p-3">{customer.email}</td>
-                <td className="p-3">{customer.registered}</td>
+                <td className="p-3">{customer.createdAt}</td>
                 <td className="p-3">{customer.orders}</td>
                 <td className="p-3">
                   <span className={`px-3 py-1 rounded-full text-white text-sm ${customer.statusColor}`}>{customer.status}</span>

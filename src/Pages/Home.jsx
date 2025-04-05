@@ -8,6 +8,8 @@ function Home() {
 
 
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -15,9 +17,10 @@ function Home() {
       .then((response) => {
         setProducts(response.data); // Store products in state
       })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
+      .catch((err) => {
+        setError(err.response?.data?.message || "Error fetching products");
       });
+      setLoading(false);
   }, []);
 
 
@@ -77,6 +80,9 @@ function Home() {
           <div className="p-4">
             <h2 className="text-4xl font-bold mb-4 mt-4">What's New!</h2>
           </div>
+
+          {loading && <p className="pt-24">Loading products...</p>}
+      {error && <p className="text-red-500 ">{error}</p>}
 
           {/* Default Product Listing */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">

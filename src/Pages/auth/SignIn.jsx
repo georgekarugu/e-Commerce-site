@@ -8,32 +8,45 @@ function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!identity || !password) {
       setError("Enter your email or mobile phone number and password.");
-    } else {
-      setError("");
-      fetch("http://localhost:8080/auth/sign-in", {
+      return;
+    }
+
+    setError(""); // Clear previous errors
+    console.log("Submitting:", { identity, password }); // Debugging step
+
+    try {
+      const response = await fetch("http://localhost:8080/auth/sign-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          identity,
-          password,
-        })
-      })
-        .then((res) => res.json())
-        .then(({ error, userID }) => {
-          if (error) {
-            setError(error);
-            return;
-          }
-          localStorage.setItem("userID", userID);
-        });
-    }
-  };
+        body: JSON.stringify({ identity, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Response:", data); // Debug response
+
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+
+      localStorage.setItem("userID", data.userID);
+      console.log("User ID saved:", data.userID);
+      navigate("/account");
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError("Something went wrong. Please try again.");
+    }}
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -77,7 +90,7 @@ function SignIn() {
           </button>
         </form>
         <br></br>
-
+        
         <p className="text-center text-sm text-gray-600 mt-4">
           New to luku store?{" "}
           <button
