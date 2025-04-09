@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const PlaceOrder = ({ cartItems, userId, total }) => {
   const [loading, setLoading] = useState(false);
+  const [cartItemsIDs, setCartItemsIDs] = useState([]);
 
+  useEffect(() => {
+    for (let item of cartItems) {
+      item._id && setCartItemsIDs([...cartItemsIDs, item._id]);
+    }
+  }, []);
   const handlePlaceOrder = async () => {
-
-    //setLoading(true);
-
     try {
-      const response = await axios.post(
-        "http://localhost:8080/orders",
-        {
-          items: cartItems,
-          totalAmount:total,
-          //paymentMethod: "Credit Card",  Can be dynamic
-        },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }, // Send token
-        }
-      );
-
+      const response = await axios.post("http://localhost:8080/orders", {
+        items: cartItemsIDs,
+        totalAmount: total,
+        //paymentMethod: "Credit Card",  Can be dynamic
+      });
+      console.log(cartItemsIDs);
+      if (await response.data.error) {
+        alert("Failed to place order");
+        return;
+      }
       alert("Order placed successfully!");
-      console.log(response.data);
     } catch (error) {
       console.error("Error placing order:", error);
       alert("Failed to place order");
